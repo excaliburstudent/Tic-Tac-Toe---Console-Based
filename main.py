@@ -7,6 +7,13 @@
 # Author: Robert Walsh
 # Date Created: January 29, 2023
 
+EMPTY = "empty"
+board = [ 
+  EMPTY, EMPTY, EMPTY, 
+  EMPTY, EMPTY, EMPTY, 
+  EMPTY, EMPTY, EMPTY 
+]
+
 def draw_board():
   print("   |   |   ")
   print(" 1 | 2 | 3 ")
@@ -21,4 +28,3 @@ def draw_board():
   print("   |   |   ")
 
 draw_board()
-  
