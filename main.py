@@ -22,16 +22,11 @@ def get_symbol(the_board, square_number):
   return symbol
   
 def draw_board(the_board):
-  print("   |   |   ")
-  print(" {} | {} | {} ".format(get_symbol(the_board, 1), get_symbol(the_board, 2), get_symbol(the_board, 3)))
-  print("   |   |   ")
-  print("---+---+---")
-  print("   |   |   ")
-  print(" {} | {} | {} ".format(get_symbol(the_board, 4), get_symbol(the_board, 5), get_symbol(the_board, 6)))
-  print("   |   |   ")
-  print("---+---+---")
-  print("   |   |   ")
-  print(" {} | {} | {} ".format(get_symbol(the_board, 7), get_symbol(the_board, 8), get_symbol(the_board, 9)))
-  print("   |   |   ")
+  for row in range(3):
+    print("   |   |   ")
+    print(" {} | {} | {} ".format(get_symbol(the_board, row * 3 + 1), get_symbol(the_board, row * 3 + 2), get_symbol(the_board, row * 3 + 3)))
+    print("   |   |   ")
+    if row < 2:
+      print("---+---+---")
 
 draw_board(board)
