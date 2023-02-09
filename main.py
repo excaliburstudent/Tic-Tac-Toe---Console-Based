@@ -32,4 +32,6 @@ def draw_board(the_board):
 print("Hello, let's play Tic Tac Toe.")
 print("I'll be X and you can be O.")
 
+whose_turn = input("Who should go first? ").upper()
+
 draw_board(board)
