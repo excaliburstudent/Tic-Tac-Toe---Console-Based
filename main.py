@@ -29,4 +29,7 @@ def draw_board(the_board):
     if row < 2:
       print("---+---+---")
 
+print("Hello, let's play Tic Tac Toe.")
+print("I'll be X and you can be O.")
+
 draw_board(board)
