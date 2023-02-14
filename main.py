@@ -34,12 +34,17 @@ def draw_board(the_board):
     if row < 2:
       print("---+---+---")
 
-print("Hello, let's play Tic Tac Toe.")
-print("I'll be {} and you can be {}.".format(COMPUTER, PLAYER))
+def greet_player():
+  print("Hello, let's play Tic Tac Toe.")
+  print("I'll be {} and you can be {}.".format(COMPUTER, PLAYER))
 
-whose_turn = input(WHO_SHOULD_GO_FIRST_PROMPT).upper()
-while whose_turn != COMPUTER and whose_turn != PLAYER:
-  print("Please enter {} or {}.".format(COMPUTER, PLAYER))
-  whose_turn = input(WHO_SHOULD_GO_FIRST_PROMPT).upper()
-  
+  choice = input(WHO_SHOULD_GO_FIRST_PROMPT).upper()
+  while choice != COMPUTER and choice != PLAYER:
+    print("Please enter {} or {}.".format(COMPUTER, PLAYER))
+    choice = input(WHO_SHOULD_GO_FIRST_PROMPT).upper()
+  return choice
+
+whose_turn = greet_player()
 draw_board(board)
+
+print("It's player {}'s turn".format(whose_turn))
