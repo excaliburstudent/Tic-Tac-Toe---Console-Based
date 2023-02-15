@@ -12,6 +12,7 @@ COMPUTER = "X"
 PLAYER = "O"
 
 WHO_SHOULD_GO_FIRST_PROMPT = "Who should go first? "
+INVALID_PLAYER_CHOICE_ERROR = "Please enter a number between 1 and 9."
 
 board = [ 
   EMPTY, EMPTY, EMPTY, 
@@ -44,7 +45,25 @@ def greet_player():
     choice = input(WHO_SHOULD_GO_FIRST_PROMPT).upper()
   return choice
 
+def get_player_choice(the_board):
+  print("It's your turn.")
+  valid_choice = False
+  while not valid_choice:
+    choice = input("Pick a square by typing its number: ")
+    if not choice.isdecimal():
+      print(INVALID_PLAYER_CHOICE_ERROR)
+    else:
+      choice = int(choice)
+      if choice < 1 or choice > 9:
+        print(INVALID_PLAYER_CHOICE_ERROR)
+      elif the_board[choice - 1] != EMPTY:
+        print("That square is already taken.")
+      else:
+        valid_choice = True
+  return choice
+
 whose_turn = greet_player()
 draw_board(board)
 
-print("It's player {}'s turn".format(whose_turn))
+player_choice = get_player_choice(board)
+print("You chose: {}".format(player_choice))
