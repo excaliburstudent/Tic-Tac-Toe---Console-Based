@@ -67,10 +67,10 @@ def get_player_choice(the_board):
 
 def get_computer_choice(the_board):
   print("It's my turn.")
-  time.sleep(random.randint(25, 75)/100.0)
+  time.sleep(random.randint(25, 75)/100)
   choice = random.randint(1, 9)
   while the_board[choice - 1] != EMPTY:
-    time.sleep(random.randint(25, 50)/100.0)
+    time.sleep(random.randint(25, 50)/100)
     choice = random.randint(1, 9)
 
   return choice
@@ -79,8 +79,15 @@ random.seed()
 whose_turn = greet_player()
 draw_board(board)
 
-#player_choice = get_player_choice(board)
-#print("You chose: {}".format(player_choice))
+winner = None
+while winner == None:
+  if whose_turn == PLAYER:
+    player_choice = get_player_choice(board)
+    board[player_choice - 1] = PLAYER
+    whose_turn = COMPUTER
+  else:
+    computer_choice = get_computer_choice(board)
+    board[computer_choice - 1] = COMPUTER
+    whose_turn = PLAYER
 
-computer_choice = get_computer_choice(board)
-print("I chose {}".format(computer_choice))
+  draw_board(board)
