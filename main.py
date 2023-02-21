@@ -13,9 +13,21 @@ import time
 EMPTY = "empty"
 COMPUTER = "X"
 PLAYER = "O"
+CAT = "CAT"
 
 WHO_SHOULD_GO_FIRST_PROMPT = "Who should go first? "
 INVALID_PLAYER_CHOICE_ERROR = "Please enter a number between 1 and 9."
+
+WINNING_COMBINATIONS = [
+  [ 1, 2, 3 ],
+  [ 1, 5, 9 ],
+  [ 1, 4, 7 ],
+  [ 2, 5, 8 ],
+  [ 3, 6, 9 ],
+  [ 3, 5, 7 ],
+  [ 4, 5, 6 ],
+  [ 7, 8, 9 ]
+]
 
 board = [ 
   EMPTY, EMPTY, EMPTY, 
@@ -75,6 +87,20 @@ def get_computer_choice(the_board):
 
   return choice
 
+def check_for_winner(the_board):
+  for combination in WINNING_COMBINATIONS:
+    first_symbol = the_board[combination[0] - 1]
+    second_symbol = the_board[combination[1] - 1]
+    third_symbol = the_board[combination[2] - 1]
+    if first_symbol != EMPTY and second_symbol == first_symbol and third_symbol == first_symbol:
+      return first_symbol
+
+  if the_board.count(EMPTY) == 0:
+    return CAT
+
+  return None
+
+# Main program code
 random.seed()
 whose_turn = greet_player()
 draw_board(board)
@@ -91,3 +117,6 @@ while winner == None:
     whose_turn = PLAYER
 
   draw_board(board)
+  winner = check_for_winner(board)
+
+print("The game is over")
