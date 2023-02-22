@@ -13,7 +13,7 @@ import time
 EMPTY = "empty"
 COMPUTER = "X"
 PLAYER = "O"
-CAT = "CAT"
+CAT = "cat"
 
 WHO_SHOULD_GO_FIRST_PROMPT = "Who should go first? "
 INVALID_PLAYER_CHOICE_ERROR = "Please enter a number between 1 and 9."
@@ -100,6 +100,14 @@ def check_for_winner(the_board):
 
   return None
 
+def report_winner(the_winner):
+  if the_winner == PLAYER:
+    print("Congratulations!  You won the game!")
+  elif the_winner == COMPUTER:
+    print("Ha!  I won!")
+  else:
+    print("Ah, we tied.  Cat got that game.")
+
 # Main program code
 random.seed()
 whose_turn = greet_player()
@@ -119,4 +127,4 @@ while winner == None:
   draw_board(board)
   winner = check_for_winner(board)
 
-print("The game is over")
+report_winner(winner)
