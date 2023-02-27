@@ -91,6 +91,27 @@ def can_win(the_board, symbol):
       return combination[0]
 
   return None
+
+def prevent_two_option_win(the_board, p1, p2, e1, e2, e3):
+  first_symbol = the_board[p1 - 1]
+  second_symbol = the_board[p2 - 1]
+  third_symbol = the_board[5 - 1]
+  if first_symbol == PLAYER and second_symbol == PLAYER and third_symbol == COMPUTER:
+    first_symbol = the_board[e1 - 1]
+    second_symbol = the_board[e2 - 1]
+    third_symbol = the_board[e3 - 1]
+    if first_symbol == EMPTY and second_symbol == EMPTY and third_symbol == EMPTY:
+      return e3
+
+  return None
+
+def center_or_corner_square(the_board):
+  squares = [ 5, 1, 3, 7, 9 ]
+  for square in squares:
+    if the_board[square - 1] == EMPTY:
+      return square
+
+  return None
   
 def get_computer_choice(the_board):
   print("It's my turn.")
@@ -98,6 +119,18 @@ def get_computer_choice(the_board):
   choice = can_win(the_board, COMPUTER)
   if choice == None:
     choice = can_win(the_board, PLAYER)
+  if choice == None:
+    choice = prevent_two_option_win(the_board, 1, 9, 4, 7, 8)
+  if choice == None:
+    choice = prevent_two_option_win(the_board, 1, 8, 9, 4, 7)
+  if choice == None:
+    choice = prevent_two_option_win(the_board, 3, 7, 8, 9, 6)
+  if choice == None:
+    choice = prevent_two_option_win(the_board, 3, 8, 9, 7, 6)
+  if choice == None:
+    choice = prevent_two_option_win(the_board, 7, 6, 9, 8, 3)
+  if choice == None:
+    choice = center_or_corner_square(the_board)
   if choice == None:
     choice = random.randint(1, 9)
     while the_board[choice - 1] != EMPTY:
